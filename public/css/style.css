@@ -273,3 +273,20 @@ ul{
 #modal-form table tr{
   border-bottom: 1px solid grey;
 }
+
+/* Hover effect on menu items */
+.menu li a:hover {
+    background: #fff; /* Change the background color on hover */
+    color: #A00000; /* Change the text color on hover */
+}
+
+/* Increase space between menu items in the responsive menu */
+@media (max-width: 768px) {
+    .navbar-nav {
+        margin-top: 10px; /* Adjust the top margin to increase space between menu items */
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px; /* Adjust the bottom margin to increase space between menu items */
+    }
+}
