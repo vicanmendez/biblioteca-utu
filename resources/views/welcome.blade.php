@@ -20,7 +20,7 @@
                             <label>Contraseña</label>
                             <input type="password" name="password" class="form-control" value="" required>
                         </div>
-                        <input type="submit" name="login" class="btn btn-danger" value="login" />
+                        <input type="submit" name="login" class="btn btn-primary" value="login" />
                     </form>
                     @error('username')
                         <div class='alert alert-danger'>{{ $message }}</div>
