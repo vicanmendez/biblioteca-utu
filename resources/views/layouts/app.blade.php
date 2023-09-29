@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="offset-md-4 col-md-4">
                     <div class="logo">
-                        <a href="#"><img src="{{ asset('images/library.png') }}"></a>
+                        <a href="#"><img src="{{ asset('images/logoutu.png') }}"></a>
                     </div>
                 </div>
                 <div class="offset-md-2 col-md-2">
@@ -28,8 +28,8 @@
                                 Hola {{ auth()->user()->name }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('change_password') }}">Change Password</a>
-                                <a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit()">Log Out</a>
+                                <a class="dropdown-item" href="{{ route('change_password') }}">Cambiar contraseña</a>
+                                <a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit()">Salir</a>
                             </div>
                             <form method="post" id="logoutForm" action="{{ route('logout') }}">
                                 @csrf
@@ -57,15 +57,15 @@
                         <!-- Navbar links -->
                         <div class="collapse navbar-collapse" id="collapsibleNavbar">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('authors') }}">Authors</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('publishers') }}">Publishers</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Categories</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('books') }}">Books</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('students') }}">Reg Students</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('book_issued') }}">Book Issue</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('reports') }}">Reports</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('settings') }}">Settings</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Principal</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('authors') }}">Autores</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('publishers') }}">Editoriales</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Categorías</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('books') }}">Libros</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('students') }}">Estudiantes</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('book_issued') }}">Préstamos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('reports') }}">Reportes</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('settings') }}">Ajustes</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <span>© Copyright 2021 <a href="https://www.yahoobaba.net">YahooBaba 😎</a></span>
+                    <span> APLICACIÓN WEB SÓLO PARA USO INTERNO DE BIBLIOTECA </span>
                 </div>
             </div>
         </div>
