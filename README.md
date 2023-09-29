@@ -28,7 +28,8 @@ Si FALLA el comando anterior, ejecutar composer update y luego instalar las depe
 ```
 composer update
 ````
-install js dependencies
+Instalar las dependencias JS
+
 ```
 npm install && npm run dev
 ````
@@ -55,3 +56,4 @@ password: admin
 ```
 # Listo el pollo! 🎊🎉 
 
+#Proyecto forkeado del original de <a href="https://github.com/tauseedzaman/Laravel-library-management-system"> tauseedzaman </a> (Thanks, bro)
