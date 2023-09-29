@@ -34,18 +34,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label>Género</label>
-                            <select name="gender" class="form-control">
-                                <option value="male" selected>Hombre</option>
-                                <option value="female">Mujer</option>
-                            </select>
-                            @error('gender')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                
                         <div class="form-group">
                             <label>Clase</label>
                             <input type="text" class="form-control" placeholder="Grupo" name="class"
@@ -57,20 +46,10 @@
                             @enderror
                         </div>
                         
-                        <div class="form-group">
-                            <label>Age</label>
-                            <input type="number" class="form-control" placeholder="Age" name="age"
-                                value="{{ old('age') }}" required>
-                            @error('age')
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
                     
                         <div class="form-group">
-                            <label>Phone</label>
-                            <input type="phone" class="form-control" placeholder="Phone" name="phone"
+                            <label>Teléfono</label>
+                            <input type="phone" class="form-control" placeholder="Teléfono de contacto" name="phone"
                                 value="{{ old('phone') }}" required>
                             @error('phone')
                                 <div class="alert alert-danger" role="alert">
@@ -79,7 +58,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
+                            <label>E-mail</label>
                             <input type="email" class="form-control" placeholder="Email" name="email"
                                 value="{{ old('email') }}" required>
                             @error('email')
@@ -88,7 +67,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <input type="submit" name="save" class="btn btn-danger" value="save">
+                        <input type="submit" name="save" class="btn btn-primary" value="Guardar">
                     </form>
                 </div>
             </div>

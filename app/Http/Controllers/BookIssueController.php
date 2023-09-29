@@ -47,12 +47,10 @@ class BookIssueController extends Controller
     public function store(Storebook_issueRequest $request)
     {
         $issue_date = date('Y-m-d');
-        $return_date = date('Y-m-d', strtotime("+" . (settings::latest()->first()->return_days) . " days"));
         $data = book_issue::create($request->validated() + [
             'student_id' => $request->student_id,
             'book_id' => $request->book_id,
             'issue_date' => $issue_date,
-            'return_date' => $return_date,
             'issue_status' => 'N',
         ]);
         $data->save();
@@ -71,13 +69,8 @@ class BookIssueController extends Controller
     {
         // calculate the total fine  (total days * fine per day)
         $book = book_issue::where('id',$id)->get()->first();
-        $first_date = date_create(date('Y-m-d'));
-        $last_date = date_create($book->return_date);
-        $diff = date_diff($first_date, $last_date);
-        $fine = (settings::latest()->first()->fine * $diff->format('%a'));
         return view('book.issueBook_edit', [
             'book' => $book,
-            'fine' => $fine,
         ]);
     }
 
@@ -92,11 +85,11 @@ class BookIssueController extends Controller
     {
         // dd($request->all());
         $book = book_issue::find($id);
-        $book->issue_status = 'Y';
+        $book->status = 'Y';
         $book->return_day = now();
         $book->save();
         $bookk = book::find($book->book_id);
-        $bookk->status= 'Y';
+        $bookk->status= 'N';
         $bookk->save();
         return redirect()->route('book_issued');
     }

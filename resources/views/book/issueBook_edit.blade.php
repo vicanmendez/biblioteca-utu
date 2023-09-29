@@ -34,9 +34,13 @@
                             </tr>
                             <tr>
                                 <td>Fecha de devolución : </td>
-                                <td><b>{{ $book->return_date->format('d M, Y') }}</b></td>
+                                @if (isset ($book->return_date) && ($book->return_date != null))
+                                    <td><b>{{ $book->return_date->format('d M, Y') }}</b></td>
+                                @else
+                                    <td><b>Fecha no establecida</b></td>
+                                @endif
                             </tr>
-                            @if ($book->issue_status == 'Y')
+                            @if ($book->status == 'Y')
                                 <tr>
                                     <td>Estado</td>
                                     <td><b>Devuelto</b></td>
@@ -45,16 +49,10 @@
                                     <td>Devuelto en fecha: </td>
                                     <td><b>{{ $book->return_day->format('d M, Y') }}</b></td>
                                 </tr>
-                            @else
-                                @if (date('Y-m-d') > $book->return_date->format('d-m-Y'))
-                                    <tr>
-                                        <td>Correcto</td>
-                                        <td>Rs. {{ $fine }}</td>
-                                    </tr>
-                                @endif
+                          
                             @endif
                         </table>
-                        @if ($book->issue_status == 'N')
+                        @if ($book->status == 'N')
                             <form action="{{ route('book_issue.update', $book->id) }}" method="post" autocomplete="off">
                                 @csrf
                                 <input type='submit' class='btn btn-primary' name='save' value='Ingresar devolución de libro'>

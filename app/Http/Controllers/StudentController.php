@@ -79,9 +79,7 @@ class StudentController extends Controller
         $student = student::find($id);
         $student->name = $request->name;
         $student->address = $request->address;
-        $student->gender = $request->gender;
         $student->class = $request->class;
-        $student->age = $request->age;
         $student->phone = $request->phone;
         $student->email = $request->email;
         $student->save();
