@@ -19,7 +19,7 @@ class LoginController extends Controller
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect('/dashboard');
         } else {
-            return redirect()->back()->withErrors(['username' => 'Invalid username or password']);
+            return redirect()->back()->withErrors(['username' => 'Usuario o contraseña incorrectos']);
         }
     }
 

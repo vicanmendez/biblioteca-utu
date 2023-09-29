@@ -51,7 +51,7 @@ class BookIssueController extends Controller
             'student_id' => $request->student_id,
             'book_id' => $request->book_id,
             'issue_date' => $issue_date,
-            'issue_status' => 'N',
+            'issue_status' => 'Y',
         ]);
         $data->save();
         $book = book::find($request->book_id);
@@ -84,13 +84,13 @@ class BookIssueController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $book = book_issue::find($id);
-        $book->status = 'Y';
-        $book->return_day = now();
+        $book_issue = book_issue::find($id);
+        $book_issue->issue_status = 'N';
+        $book_issue->return_day = now();
+        $book_issue->save();
+        $book = book::find($book_issue->book_id);
+        $book->status= 'Y';
         $book->save();
-        $bookk = book::find($book->book_id);
-        $bookk->status= 'N';
-        $bookk->save();
         return redirect()->route('book_issued');
     }
 

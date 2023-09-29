@@ -65,7 +65,6 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ route('students') }}">Estudiantes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('book_issued') }}">Préstamos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('reports') }}">Reportes</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('settings') }}">Ajustes</a></li>
                             </ul>
                         </div>
                     </nav>

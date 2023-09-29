@@ -52,7 +52,7 @@
                           
                             @endif
                         </table>
-                        @if ($book->status == 'N')
+                        @if ($book->issue_status == 'Y')
                             <form action="{{ route('book_issue.update', $book->id) }}" method="post" autocomplete="off">
                                 @csrf
                                 <input type='submit' class='btn btn-primary' name='save' value='Ingresar devolución de libro'>

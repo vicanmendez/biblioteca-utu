@@ -27,17 +27,17 @@
                         </thead>
                         <tbody>
                             @forelse ($books as $book)
-                                @if (isset ($book->return_date) && ($book->return_date != null))
-                                <tr style='@if (date('Y-m-d') > $book->return_date->format('d-m-Y') && $book->status == 'N') ) background:rgba(255,0,0,0.2) @endif'>
+                                @if (isset ($book->return_day) && ($book->return_day != null))
+                                <tr style='@if (date('Y-m-d') > $book->return_day->format('d-m-Y') && $book->status == 'N') ) background:rgba(255,0,0,0.2) @endif'>
                                     <td>{{ $book->id }}</td>
                                     <td>{{ $book->student->name }}</td>
                                     <td>{{ $book->book->name }}</td>
                                     <td>{{ $book->student->phone }}</td>
                                     <td>{{ $book->student->email }}</td>
                                     <td>{{ $book->issue_date->format('d M, Y') }}</td>
-                                    <td>{{ $book->return_date->format('d M, Y') }}</td>
+                                    <td>{{ $book->return_day->format('d M, Y') }}</td>
                                     <td>
-                                        @if ($book->status == 'Y')
+                                        @if ($book->issue_status == 'N')
                                             <span class='badge badge-success'>Devuelto</span>
                                         @else
                                             <span class='badge badge-danger'>Prestado</span>
@@ -64,7 +64,7 @@
                                     <td>{{ $book->issue_date->format('d M, Y') }}</td>
                                     <td> No corresponde </td>
                                     <td>
-                                        @if ($book->status == 'Y')
+                                        @if ($book->issue_status == 'N')
                                             <span class='badge badge-success'>Devuelto</span>
                                         @else
                                             <span class='badge badge-danger'>Prestado</span>
