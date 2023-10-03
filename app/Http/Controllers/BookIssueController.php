@@ -32,9 +32,18 @@ class BookIssueController extends Controller
      */
     public function create()
     {
+        $allBooks = book::all();
+        $books = [];
+        foreach ($allBooks as $book) {
+            $issues_book = book_issue::where('book_id', $book->id)->where('issue_status', 'Y')->get();
+            $book->number_copies = $book->number_copies - count($issues_book);
+            if ($book->number_copies > 0) {
+                array_push($books, $book);
+            }
+        }
         return view('book.issueBook_add', [
             'students' => student::latest()->get(),
-            'books' => book::where('status', 'Y')->get(),
+            'books' => $books,
         ]);
     }
 

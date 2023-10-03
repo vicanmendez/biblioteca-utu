@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use App\Http\Requests\changePasswordRequest;
 
 class LoginController extends Controller
 {
@@ -38,5 +39,17 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function changePassword(changePasswordRequest $request)
+    {
+        $user = Auth::user();
+        if (Auth::attempt(['username' => $user->username, 'password' => $request->c_password])) {
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return redirect()->back()->with('success', 'Contraseña cambiada con éxito');
+        } else {
+            return redirect()->back()->withErrors(['c_password' => 'Contraseña incorrecta']);
+        }
     }
 }

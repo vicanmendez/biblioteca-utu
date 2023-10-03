@@ -36,9 +36,9 @@
                                         <a href="{{ route('student.edit', $student) }}>" class="btn btn-success">Editar</a>
                                     </td>
                                     <td class="delete">
-                                        <form action="{{ route('student.destroy', $student->id) }}" method="post"
+                                        <form id="deleteForm" action="{{ route('student.destroy', $student->id) }}" method="post"
                                             class="form-hidden">
-                                            <button class="btn btn-danger delete-student">Borrar</button>
+                                            <div onclick="confirmDelete({{ $student->id }})" class="btn btn-danger">Eliminar</button>
                                             @csrf
                                         </form>
                                     </td>
@@ -63,6 +63,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDelete(id) {
+          var x = confirm("CUIDADO!!! ¿Estás seguro de que quieres eliminar este estudiante? ESTO ELIMINARÁ TODOS LOS PRÉSTAMOS ASOCIADOS AL ESTUDIANTE. Clic en Aceptar para continuar, Cancelar para volver a atrás");
+          if (x) {
+              //Change the action form to delete the author with the corresponding ID
+              document.getElementById("deleteForm").action = "/student/delete/" + id;
+              document.getElementById("deleteForm").submit();
+
+          }
+          else
+              return false;
+      }
+
+  </script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript">
 

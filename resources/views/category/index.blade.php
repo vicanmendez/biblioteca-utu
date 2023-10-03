@@ -29,9 +29,9 @@
                                         <a href="{{ route('category.edit', $category) }}" class="btn btn-success">Editar</a>
                                     </td>
                                     <td class="delete">
-                                        <form action="{{ route('category.destroy', $category) }}" method="post"
+                                        <form id="deleteForm" action="{{ route('category.destroy', $category->id) }}" method="post"
                                             class="form-hidden">
-                                            <button class="btn btn-danger delete-author">Borrar</button>
+                                            <div onclick="confirmDelete({{ $category->id }})" class="btn btn-danger">Eliminar</button>
                                             @csrf
                                         </form>
                                     </td>
@@ -48,5 +48,19 @@
             </div>
         </div>
     </div>
+    <script>
+          function confirmDelete(id) {
+            var x = confirm("CUIDADO!!! ¿Estás seguro de que quieres eliminar esta categoría? ESTO ELIMINARÁ TODOS LOS LIBROS Y PRÉSTAMOS ASOCIADOS A LA CATEGORÍA. Clic en Aceptar para continuar, Cancelar para volver a atrás");
+            if (x) {
+                //Change the action form to delete the author with the corresponding ID
+                document.getElementById("deleteForm").action = "/category/delete/" + id;
+                document.getElementById("deleteForm").submit();
+
+            }
+            else
+                return false;
+        }
+
+    </script>
 @endsection
 

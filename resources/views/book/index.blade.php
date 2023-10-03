@@ -21,7 +21,7 @@
                             <th>Categoría</th>
                             <th>Autor</th>
                             <th>Editorial</th>
-                            <th>Estado</th>
+                            <th>Ejemplares disponibles</th>
                             <th>Editar</th>
                             <th>Borrar</th>
                         </thead>
@@ -34,19 +34,14 @@
                                     <td>{{ $book->auther->name }}</td>
                                     <td>{{ $book->publisher->name }}</td>
                                     <td>
-                                        @if ($book->status == 'Y')
-                                            <span class='badge badge-success'>Disponible</span>
-                                        @else
-                                            <span class='badge badge-danger'>Prestado</span>
-                                        @endif
-                                    </td>
+                                        <span class='text  text-success'> {{ $book->number_copies }}</span>
                                     <td class="edit">
                                         <a href="{{ route('book.edit', $book) }}" class="btn btn-success">Editar</a>
                                     </td>
                                     <td class="delete">
-                                        <form action="{{ route('book.destroy', $book) }}" method="post"
+                                        <form id="deleteForm" action="{{ route('book.destroy', $book) }}" method="post"
                                             class="form-hidden">
-                                            <button class="btn btn-danger delete-book">Borrar</button>
+                                            <div onclick="confirmDelete({{ $book->id }})" class="btn btn-danger delete-book">Borrar</div>
                                             @csrf
                                         </form>
                                     </td>
@@ -63,4 +58,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            var x = confirm("CUIDADO!!! ¿Estás seguro de que quieres eliminar este libro? ESTO ELIMINARÁ TODOS LOS PRÉSTAMOS ASOCIADOS AL LIBRO. Clic en Aceptar para continuar, Cancelar para volver a atrás");
+            if (x) {
+                //Change the action form to delete the author with the corresponding ID
+                document.getElementById("deleteForm").action = "/book/delete/" + id;
+                document.getElementById("deleteForm").submit();
+
+            }
+            else
+                return false;
+        }
+
+       
+    </script>
 @endsection

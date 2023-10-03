@@ -66,6 +66,14 @@
                                 </div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label>Número de ejemplares disponibles</label>
+                            <input type="number" class="form-control"  placeholder="Cantidad de copias, ej: 3 " name="number_copies" >
+                            
+                        </div>
+
+
                         <input type="submit" name="save" class="btn btn-primary" value="Guardar" required>
                     </form>
                 </div>

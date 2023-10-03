@@ -28,7 +28,7 @@
                                 Hola {{ auth()->user()->name }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('change_password') }}">Cambiar contraseña</a>
+                                <a class="dropdown-item" href="{{ route('change_password_view') }}">Cambiar contraseña</a>
                                 <a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit()">Salir</a>
                             </div>
                             <form method="post" id="logoutForm" action="{{ route('logout') }}">

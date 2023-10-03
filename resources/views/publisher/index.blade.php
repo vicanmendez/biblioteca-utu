@@ -29,9 +29,9 @@
                                         <a href="{{ route('publisher.edit', $publisher) }}" class="btn btn-success">Editar</a>
                                     </td>
                                     <td class="delete">
-                                        <form action="{{ route('publisher.destroy', $publisher) }}" method="post"
+                                        <form id="deleteForm" action="{{ route('publisher.destroy', $publisher->id) }}" method="post"
                                             class="form-hidden">
-                                            <button class="btn btn-danger delete-author">Eliminar</button>
+                                            <div onclick="confirmDelete({{ $publisher->id }})" class="btn btn-danger">Eliminar</button>
                                             @csrf
                                         </form>
                                     </td>
@@ -48,5 +48,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+          var x = confirm("CUIDADO!!! ¿Estás seguro de que quieres eliminar esta editorial? ESTO ELIMINARÁ TODOS LOS LIBROS Y PRÉSTAMOS ASOCIADOS A LA EDITORIAL. Clic en Aceptar para continuar, Cancelar para volver a atrás");
+          if (x) {
+              //Change the action form to delete the author with the corresponding ID
+              document.getElementById("deleteForm").action = "/publisher/delete/" + id;
+              document.getElementById("deleteForm").submit();
+
+          }
+          else
+              return false;
+      }
+
+  </script>
+
 @endsection
 

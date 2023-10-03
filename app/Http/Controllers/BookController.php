@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatebookRequest;
 use App\Models\auther;
 use App\Models\category;
 use App\Models\publisher;
+use App\Models\book_issue;
 
 class BookController extends Controller
 {
@@ -18,9 +19,13 @@ class BookController extends Controller
      */
     public function index()
     {
-
+        $books = book::Paginate(5);
+        foreach($books as $book){
+            $issues_book = book_issue::where('book_id', $book->id)->where('issue_status', 'Y')->get();
+            $book->number_copies = $book->number_copies - count($issues_book);
+        }
         return view('book.index', [
-            'books' => book::Paginate(5)
+            'books' => $books,
         ]);
     }
 
@@ -47,7 +52,8 @@ class BookController extends Controller
     public function store(StorebookRequest $request)
     {
         book::create($request->validated() + [
-            'status' => 'Y'
+            'status' => 'Y',
+            'number_copies' => $request->number_copies,
         ]);
         return redirect()->route('books');
     }
@@ -83,6 +89,7 @@ class BookController extends Controller
         $book->auther_id = $request->author_id;
         $book->category_id = $request->category_id;
         $book->publisher_id = $request->publisher_id;
+        $book->number_copies = $request->number_copies;
         $book->save();
         return redirect()->route('books');
     }
