@@ -83,7 +83,7 @@
 
                         <div class="form-group">
                             <label>Número de ejemplares disponibles</label>
-                            <input type="number" class="form-control"  placeholder="Cantidad de copias, ej: 3 " name="number_copies" value={{ $old->number_copies }} >
+                            <input type="number" class="form-control"  placeholder="Cantidad de copias, ej: 3 " name="number_copies" value={{ $publisher->number_copies }} >
                             
                         </div>
                         <input type="submit" name="save" class="btn btn-primary" value="Actualizar" >
