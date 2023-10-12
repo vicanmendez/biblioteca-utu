@@ -14,45 +14,51 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="message"></div>
-                    <table class="content-table">
-                        <thead>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Categoría</th>
-                            <th>Autor</th>
-                            <th>Editorial</th>
-                            <th>Ejemplares disponibles</th>
-                            <th>Editar</th>
-                            <th>Borrar</th>
-                        </thead>
-                        <tbody>
-                            @forelse ($books as $book)
-                                <tr>
-                                    <td class="id">{{ $book->id }}</td>
-                                    <td>{{ $book->name }}</td>
-                                    <td>{{ $book->category->name }}</td>
-                                    <td>{{ $book->auther->name }}</td>
-                                    <td>{{ $book->publisher->name }}</td>
-                                    <td>
-                                        <span class='text  text-success'> {{ $book->number_copies }}</span>
-                                    <td class="edit">
-                                        <a href="{{ route('book.edit', $book) }}" class="btn btn-success">Editar</a>
-                                    </td>
-                                    <td class="delete">
-                                        <form id="deleteForm" action="{{ route('book.destroy', $book) }}" method="post"
-                                            class="form-hidden">
-                                            <div onclick="confirmDelete({{ $book->id }})" class="btn btn-danger delete-book">Borrar</div>
-                                            @csrf
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8">No se han registrado libros</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="col-md-12" style="overflow-x: auto;">
+
+                        <table class="content-table">
+                            <thead>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Autor</th>
+                                <th>Editorial</th>
+                                <th>Ejemplares disponibles</th>
+                                <th> Ubicación</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </thead>
+                            <tbody>
+                                @forelse ($books as $book)
+                                    <tr>
+                                        <td class="id">{{ $book->id }}</td>
+                                        <td>{{ $book->name }}</td>
+                                        <td>{{ $book->category->name }}</td>
+                                        <td>{{ $book->auther->name }}</td>
+                                        <td>{{ $book->publisher->name }}</td>
+                                        <td>
+                                            <span class='text  text-success'> {{ $book->number_copies }}</span>
+                                        </td>
+                                        <td> {{ $book->book_place }}</td>
+                                        <td class="edit">
+                                            <a href="{{ route('book.edit', $book) }}" class="btn btn-success">Editar</a>
+                                        </td>
+                                        <td class="delete">
+                                            <form id="deleteForm" action="{{ route('book.destroy', $book) }}" method="post"
+                                                class="form-hidden">
+                                                <div onclick="confirmDelete({{ $book->id }})" class="btn btn-danger delete-book">Borrar</div>
+                                                @csrf
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8">No se han registrado libros</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $books->links('vendor/pagination/bootstrap-4') }}
                 </div>
             </div>

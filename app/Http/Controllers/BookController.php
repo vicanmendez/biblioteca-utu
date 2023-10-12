@@ -54,6 +54,7 @@ class BookController extends Controller
         book::create($request->validated() + [
             'status' => 'Y',
             'number_copies' => $request->number_copies,
+            'book_place' => $request->book_place,
         ]);
         return redirect()->route('books');
     }
@@ -90,6 +91,7 @@ class BookController extends Controller
         $book->category_id = $request->category_id;
         $book->publisher_id = $request->publisher_id;
         $book->number_copies = $request->number_copies;
+        $book->book_place = $request->book_place;
         $book->save();
         return redirect()->route('books');
     }

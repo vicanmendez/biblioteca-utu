@@ -73,6 +73,12 @@
                             
                         </div>
 
+                        <div class="form-group">
+                            <label> Ubicación del libro </label>
+                            <input type="text" class="form-control"  placeholder="Lugar, ej: 'Biblioteca 1'" name="book_place" >
+                            
+                        </div>
+
 
                         <input type="submit" name="save" class="btn btn-primary" value="Guardar" required>
                     </form>

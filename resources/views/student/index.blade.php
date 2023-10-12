@@ -13,43 +13,45 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="message"></div>
-                    <table class="content-table">
-                        <thead>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Teléfono</th>
-                            <th>Correo</th>
-                            <th>Dirección</th>
-                            <th>Editar</th>
-                            <th>Borrar</th>
-                        </thead>
-                        <tbody>
-                            @forelse ($students as $student)
-                                <tr>
-                                    <td class="id">{{ $student->id }}</td>
-                                    <td>{{ $student->name }}</td>
-                                    <td>{{ $student->phone }}</td>
-                                    <td>{{ $student->email }}</td>
-                                    <td>{{ $student->address }}</td>
-                                   
-                                    <td class="edit">
-                                        <a href="{{ route('student.edit', $student) }}>" class="btn btn-success">Editar</a>
-                                    </td>
-                                    <td class="delete">
-                                        <form id="deleteForm" action="{{ route('student.destroy', $student->id) }}" method="post"
-                                            class="form-hidden">
-                                            <div onclick="confirmDelete({{ $student->id }})" class="btn btn-danger">Eliminar</button>
-                                            @csrf
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8">No se han registrado estuiantes</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="col-md-12" style="overflow-x: auto;">
+                        <table class="content-table">
+                            <thead>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Dirección</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </thead>
+                            <tbody>
+                                @forelse ($students as $student)
+                                    <tr>
+                                        <td class="id">{{ $student->id }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->phone }}</td>
+                                        <td>{{ $student->email }}</td>
+                                        <td>{{ $student->address }}</td>
+                                    
+                                        <td class="edit">
+                                            <a href="{{ route('student.edit', $student) }}>" class="btn btn-success">Editar</a>
+                                        </td>
+                                        <td class="delete">
+                                            <form id="deleteForm" action="{{ route('student.destroy', $student->id) }}" method="post"
+                                                class="form-hidden">
+                                                <div onclick="confirmDelete({{ $student->id }})" class="btn btn-danger">Eliminar</button>
+                                                @csrf
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8">No se han registrado estuiantes</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $students->links('vendor/pagination/bootstrap-4') }}
                     <div id="modal">
                         <div id="modal-form">
