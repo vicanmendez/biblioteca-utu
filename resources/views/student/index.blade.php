@@ -15,6 +15,19 @@
                     <div class="message"></div>
                     <div class="col-md-12" style="overflow-x: auto;">
                         <table class="content-table">
+                            <form method="GET" action="{{ route('student.search') }}">
+                                @csrf
+                                <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="text" name="query" class="form-control" placeholder="Buscar por nombre...">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-primary">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+
                             <thead>
                                 <th>#</th>
                                 <th>Nombre</th>

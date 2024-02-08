@@ -14,6 +14,19 @@
                 <div class="col-md-12">
                     <div class="message"></div>
                     <table class="content-table">
+                        <form method="GET" action="{{ route('publisher.search') }}">
+                            @csrf
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" name="query" class="form-control" placeholder="Buscar por editorial...">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+
                         <thead>
                             <th>#</th>
                             <th>Nombre</th>

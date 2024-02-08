@@ -15,6 +15,21 @@
                     <div class="message"></div>
                     <table class="content-table">
                         <thead>
+                            <form method="GET" action="{{ route('authors.search') }}">
+                                @csrf
+                                <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="text" name="query" class="form-control" placeholder="Buscar por nombre...">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-primary">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+
+
                             <th> # </th>
                             <th>Nombre</th>
                             <th>Editar</th>

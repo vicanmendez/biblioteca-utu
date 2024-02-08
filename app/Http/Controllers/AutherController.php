@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\auther;
 use App\Http\Requests\StoreautherRequest;
 use App\Http\Requests\UpdateautherRequest;
+use Illuminate\Http\Request;
+
 
 class AutherController extends Controller
 {
@@ -15,9 +17,24 @@ class AutherController extends Controller
      */
     public function index()
     {
-        return view('auther.index', [
-            'authors' => auther::Paginate(5)
-        ]);
+        $authors = Auther::orderBy('name', 'ASC')->paginate(5);
+
+        return view('auther.index', compact('authors'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // If the search query is provided, filter authors by name
+        if ($query) {
+            $authors = Auther::where('name', 'like', '%'.$query.'%')->orderBy('name', 'ASC')->paginate(5);
+        } else {
+            // If no search query, fetch all authors
+            $authors = Auther::orderBy('name', 'ASC')->paginate(5);
+        }
+
+        return view('auther.index', compact('authors'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\publisher;
 use App\Http\Requests\StorepublisherRequest;
 use App\Http\Requests\UpdatepublisherRequest;
+use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
@@ -16,9 +17,25 @@ class PublisherController extends Controller
     public function index()
     {
         return view('publisher.index', [
-            'publishers' => publisher::Paginate(5)
+            'publishers' => Publisher::orderBy('name', 'ASC')->Paginate(5)
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // If the search query is provided, filter authors by name
+        if ($query) {
+            $publishers = Publisher::where('name', 'like', '%'.$query.'%')->orderBy('name', 'ASC')->paginate(5);
+        } else {
+            // If no search query, fetch all authors
+            $publishers = Publisher::orderBy('name', 'ASC')->paginate(5);
+        }
+
+        return view('publisher.index', compact('publishers'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

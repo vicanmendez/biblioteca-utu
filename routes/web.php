@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/authors/update/{id}', [AutherController::class, 'update'])->name('authors.update');
     Route::post('/authors/delete/{id}', [AutherController::class, 'destroy'])->name('authors.destroy');
     Route::post('/authors/create', [AutherController::class, 'store'])->name('authors.store');
+    Route::get('/authors/search', [AutherController::class, 'search'])->name('authors.search');
+
 
     // publisher crud
     Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers');
@@ -51,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/publisher/update/{id}', [PublisherController::class, 'update'])->name('publisher.update');
     Route::post('/publisher/delete/{id}', [PublisherController::class, 'destroy'])->name('publisher.destroy');
     Route::post('/publisher/create', [PublisherController::class, 'store'])->name('publisher.store');
+    Route::get('/publisher/search', [PublisherController::class, 'search'])->name('publisher.search');
+
 
     // Category CRUD
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
@@ -59,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::post('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
 
 
 
@@ -70,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/book/update/{id}', [BookController::class, 'update'])->name('book.update');
     Route::post('/book/delete/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::post('/book/create', [BookController::class, 'store'])->name('book.store');
+    Route::get('/book/search', [BookController::class, 'search'])->name('book.search');
+
 
     // students CRUD
     Route::get('/students', [StudentController::class, 'index'])->name('students');
@@ -79,7 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/student/delete/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
     Route::post('/student/create', [StudentController::class, 'store'])->name('student.store');
     Route::get('/student/show/{id}', [StudentController::class, 'show'])->name('student.show');
-
+    Route::get('/student/search', [StudentController::class, 'search'])->name('student.search');
 
 
     Route::get('/book_issue', [BookIssueController::class, 'index'])->name('book_issued');

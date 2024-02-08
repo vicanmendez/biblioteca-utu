@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use App\Http\Requests\StorecategoryRequest;
 use App\Http\Requests\UpdatecategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -16,10 +17,26 @@ class CategoryController extends Controller
     public function index()
     {
         return view('category.index', [
-            'categories' => category::Paginate(5)
+            'categories' => Category::orderBy('name', 'ASC')->Paginate(5)
         ]);
 
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // If the search query is provided, filter authors by name
+        if ($query) {
+            $categories = Category::where('name', 'like', '%'.$query.'%')->orderBy('name', 'ASC')->paginate(5);
+        } else {
+            // If no search query, fetch all authors
+            $categories = Category::orderBy('name', 'ASC')->paginate(5);
+        }
+
+        return view('category.index', compact('categories'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

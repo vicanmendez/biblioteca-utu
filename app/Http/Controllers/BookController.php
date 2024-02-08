@@ -9,6 +9,7 @@ use App\Models\auther;
 use App\Models\category;
 use App\Models\publisher;
 use App\Models\book_issue;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -19,7 +20,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = book::Paginate(5);
+        $books = Book::orderBy('name', 'ASC')->paginate(5);
         foreach($books as $book){
             $issues_book = book_issue::where('book_id', $book->id)->where('issue_status', 'Y')->get();
             $book->number_copies = $book->number_copies - count($issues_book);
@@ -28,6 +29,22 @@ class BookController extends Controller
             'books' => $books,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // If the search query is provided, filter authors by name
+        if ($query) {
+            $books = Book::where('name', 'like', '%'.$query.'%')->orderBy('name', 'ASC')->paginate(5);
+        } else {
+            // If no search query, fetch all authors
+            $books = Book::orderBy('name', 'ASC')->paginate(5);
+        }
+
+        return view('book.index', compact('books'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

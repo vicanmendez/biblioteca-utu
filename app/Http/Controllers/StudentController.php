@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\student;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -16,9 +17,25 @@ class StudentController extends Controller
     public function index()
     {
         return view('student.index', [
-            'students' => student::Paginate(5)
+            'students' => Student::orderBy('name', 'ASC')->Paginate(5)
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // If the search query is provided, filter authors by name
+        if ($query) {
+            $students = Student::where('name', 'like', '%'.$query.'%')->orderBy('name', 'ASC')->paginate(5);
+        } else {
+            // If no search query, fetch all authors
+            $students = Student::orderBy('name', 'ASC')->paginate(5);
+        }
+
+        return view('student.index', compact('students'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
